@@ -3,64 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desa Binaan Mangoloreng</title>
+    <title>Desa Binaan Mangoloreng - Program Hipertensi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Desa Binaan Mangoloreng</h1>
-        <p>Program Penurunan Angka Hipertensi & Pengabdian Masyarakat</p>
-        <p>BEM Fakultas Kedokteran</p>
+        <div class="container">
+            <div class="logo-container">
+                <!-- Anda bisa menambahkan logo di sini jika ada -->
+                <!-- <img src="logo.png" alt="Logo Fakultas Kedokteran" class="logo"> -->
+                <h1>Desa Binaan Mangoloreng</h1>
+            </div>
+            <p class="subtitle">Program Penurunan Angka Hipertensi & Pengabdian Masyarakat</p>
+            <p class="organization">BEM Fakultas Kedokteran</p>
+        </div>
     </header>
 
     <main>
-        <section id="profil-desa">
-            <h2>1. Data Profil Desa</h2>
-            <div class="card">
-                <p><strong>Nama Desa:</strong> Mangoloreng</p>
-                <p><strong>Kabupaten:</strong> Maros</p>
-                <p><strong>Fokus Program:</strong> Penurunan angka hipertensi, pemeriksaan kesehatan (tensi, pemberian obat, fisioterapi), dan donor darah.</p>
-            </div>
-        </section>
+        <div class="container">
+            <section id="profil-desa" class="content-section">
+                <h2 class="section-title"><i class="fas fa-map-marker-alt icon"></i> Profil Desa</h2>
+                <div class="card">
+                    <p><strong>Nama Desa:</strong> Mangoloreng</p>
+                    <p><strong>Kabupaten:</strong> Maros</p>
+                    <p><strong>Fokus Program:</strong> Penurunan angka hipertensi, pemeriksaan kesehatan (tensi, pemberian obat, fisioterapi), dan donor darah.</p>
+                </div>
+            </section>
 
-        <section id="data-pasien">
-            <h2>2. Data Pasien Pemeriksaan Kesehatan</h2>
-            
-            <div class="data-bulan-container">
-                <article class="data-bulan" id="data-april">
-                    <h3>Pemeriksaan Kesehatan - April</h3>
-                    <ul id="list-april">
+            <section id="data-pasien" class="content-section">
+                <h2 class="section-title"><i class="fas fa-users icon"></i> Data Pasien Pemeriksaan Kesehatan</h2>
+                
+                <div class="tabs">
+                    <button class="tab-link active" onclick="openMonth(event, 'april')">April</button>
+                    <button class="tab-link" onclick="openMonth(event, 'mei')">Mei</button>
+                    <!-- Tambahkan tombol untuk bulan selanjutnya di sini -->
+                </div>
+
+                <div id="april" class="tab-content active-content">
+                    <h3><i class="far fa-calendar-alt icon"></i> Pemeriksaan Kesehatan - April</h3>
+                    <div class="stats-container">
                         <!-- Data April akan diisi oleh JavaScript -->
-                    </ul>
+                    </div>
                     <a href="https://docs.google.com/spreadsheets/d/1fcuLJ2OQCmPh6pTVhddw0MGAW2Kaxz0N/edit?usp=drivesdk&ouid=100422466002000525064&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" class="spreadsheet-link">
-                        Lihat Detail Data April (Spreadsheet)
+                        <i class="fas fa-table icon"></i> Lihat Detail Data April (Spreadsheet)
                     </a>
-                </article>
+                </div>
     
-                <article class="data-bulan" id="data-mei">
-                    <h3>Pemeriksaan Kesehatan - Mei</h3>
-                    <ul id="list-mei">
+                <div id="mei" class="tab-content">
+                    <h3><i class="far fa-calendar-alt icon"></i> Pemeriksaan Kesehatan - Mei</h3>
+                    <div class="stats-container">
                         <!-- Data Mei akan diisi oleh JavaScript -->
-                    </ul>
+                    </div>
                     <a href="https://docs.google.com/spreadsheets/d/12whbEDlEtXGP6u0gg9vwSq8h2bRwGiDO/edit?usp=drivesdk&ouid=100422466002000525064&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" class="spreadsheet-link">
-                        Lihat Detail Data Mei (Spreadsheet)
+                        <i class="fas fa-table icon"></i> Lihat Detail Data Mei (Spreadsheet)
                     </a>
-                </article>
-            </div>
-        </section>
+                </div>
+            </section>
 
-        <section id="program-lain">
-            <h2>3. Program Tambahan</h2>
-            <div class="card">
-                <p><strong>Donor Darah:</strong> Kegiatan donor darah juga merupakan bagian dari program pengabdian masyarakat kami untuk membantu ketersediaan darah di wilayah Maros.</p>
-                <p><em>(Informasi lebih lanjut mengenai jadwal dan lokasi donor darah akan diupdate)</em></p>
-            </div>
-        </section>
-
+            <section id="program-lain" class="content-section">
+                <h2 class="section-title"><i class="fas fa-tint icon"></i> Program Tambahan</h2>
+                <div class="card">
+                    <p><strong>Donor Darah:</strong> Kegiatan donor darah juga merupakan bagian dari program pengabdian masyarakat kami untuk membantu ketersediaan darah di wilayah Maros.</p>
+                    <p><em>(Informasi lebih lanjut mengenai jadwal dan lokasi donor darah akan diupdate)</em></p>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <p>© 2024 BEM Fakultas Kedokteran - Pengabdian Masyarakat Desa Mangoloreng.</p>
+        <div class="container">
+            <p>© <span id="current-year"></span> BEM Fakultas Kedokteran - Pengabdian Masyarakat Desa Mangoloreng.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
