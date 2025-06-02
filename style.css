@@ -282,6 +282,7 @@ footer {
 
 @media (max-width: 480px) {
     header {
+        
         padding: 2rem 0;
     }
     header h1 {
