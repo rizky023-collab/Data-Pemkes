@@ -1,134 +1,83 @@
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
+document.addEventListener('DOMContentLoaded', function() {
+    // Data Pasien
+    const dataPemkes = {
+        april: {
+            label: "April",
+            items: [
+                { name: "Normal", value: 35, icon: "fas fa-smile" },
+                { name: "Pre Hipertensi", value: 19, icon: "fas fa-thermometer-half" },
+                { name: "Hipertensi Grade 1", value: 11, icon: "fas fa-exclamation-triangle" },
+                { name: "Hipertensi Grade 2", value: 2, icon: "fas fa-skull-crossbones" }
+            ],
+            total: 67
+        },
+        mei: {
+            label: "Mei",
+            items: [
+                { name: "Normal", value: 26, icon: "fas fa-smile" },
+                { name: "Pre Hipertensi", value: 12, icon: "fas fa-thermometer-half" },
+                { name: "Hipertensi Grade 1", value: 13, icon: "fas fa-exclamation-triangle" },
+                { name: "Hipertensi Grade 2", value: 6, icon: "fas fa-skull-crossbones" }
+            ],
+            total: 57
+        }
+        // Tambahkan data bulan lain di sini jika ada
+    };
 
-header {
-    background-color: #007bff; /* Warna biru khas kedokteran/kesehatan */
-    color: #fff;
-    padding: 1.5rem 0;
-    text-align: center;
-    border-bottom: #0056b3 3px solid;
-}
+    function populateMonthData(monthKey) {
+        const monthData = dataPemkes[monthKey];
+        if (!monthData) return;
 
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-}
+        const container = document.querySelector(`#${monthKey} .stats-container`);
+        if (!container) return;
 
-header p {
-    margin: 0.2rem 0;
-    font-size: 1rem;
-}
+        container.innerHTML = ''; // Bersihkan kontainer sebelum mengisi
 
-main {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 0 20px;
-}
+        monthData.items.forEach(item => {
+            const statItem = document.createElement('div');
+            statItem.classList.add('stat-item');
+            statItem.innerHTML = `
+                <span class="label"><i class="${item.icon}"></i> ${item.name}</span>
+                <span class="value">${item.value} pasien</span>
+            `;
+            container.appendChild(statItem);
+        });
 
-section {
-    background-color: #fff;
-    margin-bottom: 25px;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-section h2 {
-    color: #0056b3;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-    margin-top: 0;
-}
-
-.card {
-    background-color: #e9ecef;
-    padding: 15px;
-    border-radius: 5px;
-    border-left: 5px solid #007bff;
-}
-
-.card p {
-    margin: 0.5em 0;
-}
-
-.data-bulan-container {
-    display: flex;
-    flex-wrap: wrap; /* Agar responsif jika tidak muat */
-    gap: 20px; /* Jarak antar card bulan */
-}
-
-.data-bulan {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 6px;
-    flex: 1; /* Agar kedua card memiliki lebar yang sama */
-    min-width: 300px; /* Lebar minimum sebelum wrap */
-}
-
-.data-bulan h3 {
-    color: #333;
-    margin-top: 0;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 8px;
-}
-
-.data-bulan ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.data-bulan ul li {
-    padding: 5px 0;
-    border-bottom: 1px dotted #eee;
-}
-.data-bulan ul li:last-child {
-    border-bottom: none;
-}
-
-.data-bulan ul li strong {
-    color: #0056b3;
-}
-
-.spreadsheet-link {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 15px;
-    background-color: #28a745; /* Warna hijau */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.spreadsheet-link:hover {
-    background-color: #218838;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
-    margin-top: 30px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
+        // Tambahkan total pasien
+        const totalItem = document.createElement('div');
+        totalItem.classList.add('stat-item', 'total-stat'); // Anda bisa menambahkan styling khusus untuk total
+        totalItem.innerHTML = `
+            <span class="label"><i class="fas fa-users"></i> Total Pasien</span>
+            <span class="value total">${monthData.total} pasien</span>
+        `;
+        container.appendChild(totalItem);
     }
-    .data-bulan-container {
-        flex-direction: column; /* Susun vertikal di layar kecil */
+
+    // Isi data untuk bulan yang ada
+    populateMonthData('april');
+    populateMonthData('mei');
+
+    // Update tahun di footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+});
+
+// Fungsi untuk Tab
+function openMonth(evt, monthName) {
+    var i, tabcontent, tablinks;
+
+    // Sembunyikan semua elemen dengan class="tab-content"
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active-content");
     }
-    .data-bulan {
-        min-width: auto; /* Hapus min-width agar full width */
+
+    // Hapus class "active" dari semua elemen dengan class="tab-link"
+    tablinks = document.getElementsByClassName("tab-link");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
     }
+
+    // Tampilkan tab saat ini, dan tambahkan class "active" ke tombol yang membuka tab
+    document.getElementById(monthName).classList.add("active-content");
+    evt.currentTarget.classList.add("active");
 }
